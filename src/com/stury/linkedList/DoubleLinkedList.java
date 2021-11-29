@@ -49,14 +49,14 @@ public class DoubleLinkedList<T> {
         }
     }
 
-    public T searchFromHead(T isData) {
+    public Node<T> searchFromHead(T isData) {
         if (this.head == null) {
             return null;
         } else {
             Node<T> node = this.head;
-            while (node.next != null) { // while (node != null) 도 가능
+            while (node != null) { // while (node.next != null) 로 하면 안됌
                 if (node.data == isData) {
-                    return node.data;
+                    return node;
                 } else {
                     node = node.next;
                 }
@@ -65,19 +65,46 @@ public class DoubleLinkedList<T> {
         }
     }
 
-    public T searchFromTail(T isData) {
+    public Node<T> searchFromTail(T isData) {
         if (this.tail == null) {
             return null;
         } else {
             Node<T> node = this.tail;
-            while (node.prev != null) {
+            while (node != null) {
                 if (node.data == isData) {
-                    return node.data;
+                    return node;
                 } else {
                     node = node.prev;
                 }
             }
             return null;
+        }
+    }
+
+
+    public void addFrontNode(T data, T isData) {
+        if (this.head == null) {
+            this.head = new Node<T>(data);
+            this.tail = this.head;
+            System.out.println(data + "는 존재 하지 않아 리스트 맨 뒤에 추가 하였습니다.");
+        }
+        else {
+            Node<T> newNode = new Node<T>(isData);
+            // data 가 head 노드 인 경우
+            if (this.head.data == data) {
+                newNode.next = this.head;
+                this.head = newNode;
+            }
+            // head가 아닐경우
+            else {
+                Node<T> nextNode = this.searchFromHead(data);
+                Node<T> prevNode = nextNode.prev;
+                newNode.next = nextNode;
+                newNode.prev = prevNode;
+
+                prevNode.next = newNode;
+                nextNode.prev = newNode;
+            }
         }
     }
 }
