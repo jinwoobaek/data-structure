@@ -75,4 +75,28 @@ public class SingleLinkedList<T> {
         }
     }
 
+    public boolean delNode(T isData) {
+        if (this.head == null) {
+            return false;
+        } else {
+            Node<T> node = this.head;
+            // 맨 앞 노드 삭제
+            if (node.data == isData) {
+                this.head = this.head.next;
+                return true;
+            }
+            // 중간 노드, 마지막 노드 삭제
+            else {
+                while (node.next != null) {
+                    if (node.next.data == isData) {
+                        node.next = node.next.next;
+                        return true;
+                    }
+                    node = node.next;
+
+                }
+                return false;
+            }
+        }
+    }
 }
