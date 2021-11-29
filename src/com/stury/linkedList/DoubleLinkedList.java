@@ -54,7 +54,7 @@ public class DoubleLinkedList<T> {
             return null;
         } else {
             Node<T> node = this.head;
-            while (node != null) { // while (node.next != null) 로 하면 안됌
+            while (node != null) { // while (node != null) 도 가능
                 if (node.data == isData) {
                     return node;
                 } else {
@@ -81,14 +81,11 @@ public class DoubleLinkedList<T> {
         }
     }
 
-
     public void addFrontNode(T data, T isData) {
-        if (this.head == null) {
-            this.head = new Node<T>(data);
-            this.tail = this.head;
+        if (this.searchFromHead(data) == null) {
+            this.addNode(isData);
             System.out.println(data + "는 존재 하지 않아 리스트 맨 뒤에 추가 하였습니다.");
-        }
-        else {
+        } else {
             Node<T> newNode = new Node<T>(isData);
             // data 가 head 노드 인 경우
             if (this.head.data == data) {
