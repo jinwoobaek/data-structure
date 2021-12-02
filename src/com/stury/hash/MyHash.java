@@ -10,12 +10,10 @@ public class MyHash {
     public class Slot {
         String key;
         String value;
-        Slot next;
 
         public Slot(String key, String value) {
             this.key = key;
             this.value = value;
-            this.next = null;
         }
     }
 
@@ -27,19 +25,25 @@ public class MyHash {
         Integer address = this.hashFunc(key);
 
         if (this.hashTable[address] != null) {
-            Slot findSlot = this.hashTable[address];
-            Slot prevSlot = this.hashTable[address];
-            while (findSlot != null) {
-                if (findSlot.key == key) {
-                    findSlot.value = value;
-                    return true;
-                } else {
-                    prevSlot = findSlot;
-                    findSlot = findSlot.next;
+            if (this.hashTable[address].key == key) {
+                this.hashTable[address].value = value;
+                return true;
+            } else {
+                Integer currAddress = address + 1;
+                while (this.hashTable[currAddress] != null) {
+                    if (this.hashTable[currAddress].key == key) {
+                        this.hashTable[currAddress].value = value;
+                        return true;
+                    } else {
+                        currAddress++;
+                        if (currAddress >= this.hashTable.length) {
+                            return false;
+                        }
+                    }
                 }
+                this.hashTable[currAddress] = new Slot(key, value);
+                return true;
             }
-            prevSlot.next = new Slot(key, value);
-
         } else {
             this.hashTable[address] = new Slot(key, value);
         }
@@ -49,15 +53,22 @@ public class MyHash {
     public String getData(String key) {
         Integer address = this.hashFunc(key);
         if (this.hashTable[address] != null) {
-            Slot findSlot = this.hashTable[address];
-            while (findSlot != null) {
-                if (findSlot.key == key) {
-                    return findSlot.value;
-                } else {
-                    findSlot = findSlot.next;
+            if (this.hashTable[address].key == key) {
+                return this.hashTable[address].value;
+            } else {
+                Integer currAddress = address + 1;
+                while (this.hashTable[currAddress] != null) {
+                    if (this.hashTable[currAddress].key == key) {
+                        return this.hashTable[currAddress].value;
+                    } else {
+                        currAddress++;
+                        if (currAddress >= this.hashTable.length) {
+                            return null;
+                        }
+                    }
                 }
+                return null;
             }
-            return null;
         } else {
             return null;
         }
