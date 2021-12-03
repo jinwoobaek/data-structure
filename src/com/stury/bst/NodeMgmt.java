@@ -1,19 +1,8 @@
 package com.stury.bst;
 
+
 public class NodeMgmt {
     Node head = null;
-
-    public class Node {
-        Node left;
-        Node right;
-        int value;
-
-        public Node(int data) {
-            this.left = null;
-            this.right = null;
-            this.value = data;
-        }
-    }
 
     public boolean insertNode(int data) {
         // CASE1 : Node 가 하나도 없을때
@@ -45,5 +34,31 @@ public class NodeMgmt {
             }
         }
         return true;
+    }
+
+    public Node search(int data) {
+        // CASE1 : Node 가 하나도 없을 때
+        if (this.head == null) {
+            return null;
+        }
+        // CASE2 : Node 가 하나 이상 있을 때
+        else {
+            Node findNode = this.head;
+            while (findNode != null) {
+                // CASE 2-1 : data 가 루트 노드 일때
+                if (findNode.value == data) {
+                    return findNode;
+                }
+                // CASE 2-2 : 찾고자 하는 데이터가 parent Node 보다 작을때
+                else if (findNode.value > data) {
+                    findNode = findNode.left;
+                }
+                // CASE 2-3 : 찾고자 하는 데이터가 parent Node 보다 클때
+                else {
+                    findNode = findNode.right;
+                }
+            }
+        }
+        return null;
     }
 }
