@@ -1,4 +1,4 @@
-package com.stury.bst;
+package com.study.bst;
 
 public class Node {
     Node left;

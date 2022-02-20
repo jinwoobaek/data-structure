@@ -1,4 +1,4 @@
-package com.stury.hash;
+package com.study.hash;
 
 public class MyHash {
     public Slot[] hashTable;

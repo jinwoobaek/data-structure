@@ -1,4 +1,4 @@
-package com.stury;
+package com.study;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package com.stury.heap;
+package com.study.heap;
 
 import java.util.ArrayList;
 import java.util.Collections;

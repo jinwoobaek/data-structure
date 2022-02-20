@@ -1,4 +1,4 @@
-package com.stury.array;
+package com.study.array;
 
 public class Practice2 {
     public void mCount() {

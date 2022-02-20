@@ -1,4 +1,4 @@
-package com.stury.linkedList;
+package com.study.linkedList;
 
 public class DoubleLinkedList<T> {
     public Node<T> head = null;

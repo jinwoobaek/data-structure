@@ -1,4 +1,4 @@
-package com.stury.stack;
+package com.study.stack;
 
 import java.util.ArrayList;
 

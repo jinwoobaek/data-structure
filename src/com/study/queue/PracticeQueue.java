@@ -1,4 +1,4 @@
-package com.stury.queue;
+package com.study.queue;
 
 import java.util.ArrayList;
 
